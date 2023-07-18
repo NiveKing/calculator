@@ -1,13 +1,13 @@
 import './inputs.css'
 
-const Inputs = () => {
+const Inputs = (props) => {
     return (
         <div className='input-wrapper'>
             <div className='result'>
-                <h1>result</h1>
+                <h1>{props.result}</h1>
             </div>
             <div className='text'>
-                <h3>text</h3>
+                <h3>{props.text}</h3>
             </div>
         </div>
     )

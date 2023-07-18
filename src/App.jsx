@@ -1,43 +1,57 @@
 import { useState } from 'react'
+import * as math from 'mathjs';
 import Buttons from './components/buttons/buttons/buttons';
 import Inputs from './components/buttons/inputs/inputs';
 
 import './App.css'
 
-
 function App() {
-  const [count, setCount] = useState(0)
+  const [text, setText] = useState("")
+  const [result, setResult] = useState("")
+
+  const addToText = (val) => {
+    setText([...text, val])
+  }
+
+  const showResult = () => {
+    setResult(math.evaluate(text.join("")))
+  }
+
+  const clearText = () => {
+    setText("");
+    setResult("")
+  }
 
   return (
     <>
       <div className='app'>
         <div className='wrapper'>
-          <Inputs />
+          <Inputs text={text} result={result} />
           <div className='row'>
-            <Buttons symbol="1" color="#7C9D96" />
-            <Buttons symbol="2" color="#7C9D96" />
-            <Buttons symbol="3" color="#7C9D96" />
-            <Buttons symbol="/" color="#A1CCD1" />
+            <Buttons symbol="1" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="2" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="3" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="/" color="#7C9D96" handleClick={addToText} />
           </div>
           <div className='row'>
-            <Buttons symbol="4" color="#7C9D96" />
-            <Buttons symbol="5" color="#7C9D96" />
-            <Buttons symbol="6" color="#7C9D96" />
-            <Buttons symbol="*" color="#A1CCD1" />
+            <Buttons symbol="4" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="5" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="6" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="*" color="#7C9D96" handleClick={addToText} />
           </div>
           <div className='row'>
-            <Buttons symbol="7" color="#7C9D96" />
-            <Buttons symbol="8" color="#7C9D96" />
-            <Buttons symbol="9" color="#7C9D96" />
-            <Buttons symbol="+" color="#A1CCD1" />
+            <Buttons symbol="7" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="8" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="9" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="+" color="#7C9D96" handleClick={addToText} />
           </div>
           <div className='row'>
-            <Buttons symbol="0" color="#7C9D96" />
-            <Buttons symbol="." color="#7C9D96" />
-            <Buttons symbol="=" color="#7C9D96" />
-            <Buttons symbol="-" color="#A1CCD1" />
+            <Buttons symbol="0" color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="." color="#A1CCD1" handleClick={addToText} />
+            <Buttons symbol="=" color="#A1CCD1" handleClick={showResult} />
+            <Buttons symbol="-" color="#7C9D96" handleClick={addToText} />
           </div>
-          <Buttons symbol="Clear" color="#E9B384" />
+          <Buttons symbol="Clear" color="#E9B384" handleClick={clearText}/>
         </div>
       </div>
     </>
